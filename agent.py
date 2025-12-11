@@ -6,7 +6,11 @@ from prompts import PLANNER_PROMPT, EXECUTOR_PROMPT, VERIFIER_PROMPT
 
 # Configure Gemini API
 genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
-model = genai.GenerativeModel("gemini-1.5-pro-latest")
+model = genai.GenerativeModel("gemini-pro") 
+
+#genai.configure(api_key=API_KEY)
+#model = genai.GenerativeModel("gemini-pro")   # FIXED
+
 
 # ----------------------------------------
 
@@ -103,4 +107,5 @@ if __name__ == "__main__":
         result = solve(q)
         print(json.dumps(result, indent=2))
         print()
+
 
