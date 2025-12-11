@@ -1,0 +1,4 @@
+google-generativeai>=1.0.0
+streamlit
+protobuf
+google-api-core
