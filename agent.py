@@ -3,9 +3,9 @@ import json
 from prompts import PLANNER_PROMPT, EXECUTOR_PROMPT, VERIFIER_PROMPT
 
 # ---------------- CONFIG ----------------
-API_KEY = "AIzaSyBnLIORSh27u2AAbhbCIIg4koaAzbCcl6c"   # ← இதுல தான் உன் Gemini API Key paste பண்ணணும்
 
-genai.configure(api_key=API_KEY)
+# Configure Gemini API
+genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
 model = genai.GenerativeModel("gemini-1.5-pro-latest")
 
 # ----------------------------------------
@@ -103,3 +103,4 @@ if __name__ == "__main__":
         result = solve(q)
         print(json.dumps(result, indent=2))
         print()
+
