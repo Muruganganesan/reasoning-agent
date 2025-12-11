@@ -1,4 +1,4 @@
-google-generativeai>=1.0.0
-streamlit
-protobuf
-google-api-core
+google-generativeai==0.8.1
+streamlit==1.37.0
+protobuf==4.25.3
+google-api-core==2.17.1
