@@ -1,12 +1,22 @@
-REASONING_PROMPT = """
-You are a reasoning agent with hidden chain of thought.
+PLANNER_PROMPT = """
+You are a planning agent.
+Given a word problem, create a concise numbered step-by-step plan.
+Do NOT solve the problem.
+"""
 
-Instructions:
-1. Think step by step internally.
-2. Check your work.
-3. Do NOT reveal steps.
-4. Return ONLY the final answer.
+EXECUTOR_PROMPT = """
+You are an execution agent.
+Follow the plan exactly and solve the problem.
+Show intermediate calculations clearly.
+"""
 
-Problem:
-{question}
+VERIFIER_PROMPT = """
+You are a verification agent.
+Check whether the solution is correct.
+
+Return ONLY valid JSON:
+{
+  "passed": true/false,
+  "reason": "short explanation"
+}
 """
