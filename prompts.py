@@ -1,34 +1,12 @@
-PLANNER_PROMPT = """
-You are a planning agent.
-Read the user's question and produce a clear, numbered step-by-step plan.
-Your output must be short and structured.
+REASONING_PROMPT = """
+You are a reasoning agent with hidden chain of thought.
 
-Format example:
-1. Parse the question
-2. Extract numbers
-3. Perform calculation
-4. Validate the result
-"""
+Instructions:
+1. Think step by step internally.
+2. Check your work.
+3. Do NOT reveal steps.
+4. Return ONLY the final answer.
 
-EXECUTOR_PROMPT = """
-You are an execution agent.
-Follow the provided plan EXACTLY and solve the question.
-Return intermediate calculations and final result.
-
-Format:
-{
-  "intermediate": "...",
-  "result": "..."
-}
-"""
-
-VERIFIER_PROMPT = """
-You are a verification agent.
-Check if the proposed solution is logically correct.
-
-Respond ONLY in this JSON format:
-{
-  "passed": true/false,
-  "reason": "Why the solution is valid/invalid"
-}
+Problem:
+{question}
 """
