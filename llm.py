@@ -6,7 +6,8 @@ genai.configure(
     api_key=st.secrets["GEMINI_API_KEY"]
 )
 
-MODEL_NAME = "gemini-1.5-flash-latest"
+# ✅ Stable & supported model
+MODEL_NAME = "gemini-1.0-pro"
 
 def call_gemini(prompt: str) -> str:
     model = genai.GenerativeModel(MODEL_NAME)
