@@ -1,26 +1,28 @@
 import streamlit as st
-import json
 from agent import solve
 
-st.set_page_config(page_title="AI Reasoning Agent", page_icon="🤖")
+st.set_page_config(page_title="Reasoning Agent", layout="centered")
 
-st.title("🤖 Multi-Step Reasoning Agent")
-st.write("Ask any question. The agent will plan → execute → verify → give the final answer.")
+st.title("🧠 Multi-Step Reasoning Agent")
+st.write("Powered by **Gemini API** with self-checking")
 
-question = st.text_area("Enter your question")
+question = st.text_area(
+    "Enter a word problem:",
+    placeholder="Example: If a train leaves at 14:30 and arrives at 18:05, how long is the journey?"
+)
 
 if st.button("Solve"):
-    if question.strip() == "":
-        st.error("Please type a question!")
+    if not question.strip():
+        st.warning("Please enter a question")
     else:
         with st.spinner("Thinking..."):
             result = solve(question)
 
-        st.subheader("📌 Final Answer")
+        st.subheader("✅ Answer")
         st.success(result["answer"])
 
-        st.subheader("🧠 Explanation (Short)")
-        st.info(result["reasoning_visible_to_user"])
+        st.subheader("🧩 Explanation")
+        st.write(result["reasoning_visible_to_user"])
 
-        with st.expander("🔍 Metadata (Debug Info)"):
+        with st.expander("🔍 Debug Info (Metadata)"):
             st.json(result["metadata"])
