@@ -1,10 +1,20 @@
-from google.generativeai import generativeai as genai
+import json
+from llm import call_gemini
+from prompts import VERIFIER_PROMPT
 
-def verify_answer(model, question, answer):
+def verify(question: str, solution: str) -> dict:
     prompt = f"""
-Question: {question}
-Answer: {answer}
+{VERIFIER_PROMPT}
 
-Is this correct? YES / NO
+Question:
+{question}
+
+Solution:
+{solution}
 """
-    return model.generate_content(prompt).text.strip()
+    response = call_gemini(prompt)
+
+    try:
+        return json.loads(response)
+    except Exception:
+        return {"passed": False, "reason": "Invalid verifier response"}
